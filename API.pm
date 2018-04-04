@@ -19,7 +19,7 @@ sub getAuth {
 	my @chars = ('A'..'Z', 'a'..'z', 0..9);
 	my $salt = join '', map $chars[rand @chars], 0..8;
         my $token = md5_hex($pass . $salt);
-	my $auth = "u=$user&t=$token&s=$salt&v=1.11.0&f=json&c=slim";
+	my $auth = "u=$user&t=$token&s=$salt&v=1.11.0&f=json&c=SqueezeSonic";
 	return $auth;
 }
 
