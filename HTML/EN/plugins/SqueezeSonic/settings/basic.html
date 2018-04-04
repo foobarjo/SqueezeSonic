@@ -1,0 +1,28 @@
+[% PROCESS settings/header.html %]
+	[% WRAPPER settingSection %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_USER" desc="Username" %]<input type="text" class="stdedit" name="username" id="username" value="[% prefs.username %]" size="20" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_PASSWORD" desc="Password" %]<input type="password" class="stdedit" name="password" id="password" value="[% prefs.password %]" size="20" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_SUBURL" desc="Full Subsonic server URL | https://foobarjo.org:4343" %]<input type="text" class="stdedit" name="suburl" id="suburl" value="[% prefs.suburl %]" size="50" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_LISTS_SIZE" desc="Number of elements present in lists and returned by searches" %]<input type="text" class="stdedit" name="slists" id="slists" value="[% prefs.slists %]" size="5" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_LISTS" desc="Timeout of genrated list in seconds" %]<input type="text" class="stdedit" name="tlists" id="tlists" value="[% prefs.tlists %]" size="5" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_MUSIC" desc="Timeout for cached albums & songs in seconds" %]<input type="text" class="stdedit" name="tmusic" id="tmusic" value="[% prefs.tmusic %]" size="5" />[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE" desc="Some delay may be needed after changing format to replay previously played songs" %]
+			<select name="transcode" id="transcode">
+                        	<option [% prefs.transcode == "raw" ? "selected" : "" %] value="raw" >Disabled (raw)</option>
+                        	<option [% prefs.transcode == "320" ? "selected" : "" %] value="320" >MP3 320 kbps</option>
+                        	<option [% prefs.transcode == "256" ? "selected" : "" %] value="256" >MP3 256 kbps</option>
+                        	<option [% prefs.transcode == "128" ? "selected" : "" %] value="128" >MP3 128 kbps</option>
+                        	<option [% prefs.transcode == "64" ? "selected" : "" %] value="64" >MP3 64 kbps</option>
+                        </select>
+		[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_ARTWORK_SIZE" desc="Artwork prefered size in pixels" %]
+			<select name="asize" id="asize">
+                        	<option [% prefs.asize == "800" ? "selected" : "" %] value="800" >800</option>
+                        	<option [% prefs.asize == "1200" ? "selected" : "" %] value="1200" >1200</option>
+                        	<option [% prefs.asize == "600" ? "selected" : "" %] value="600" >600</option>
+                        	<option [% prefs.asize == "300" ? "selected" : "" %] value="300" >300</option>
+                        	<option [% prefs.asize == "150" ? "selected" : "" %] value="150" >150</option>
+                        </select>
+		[% END %]
+	[% END %]
+[% PROCESS settings/footer.html %]

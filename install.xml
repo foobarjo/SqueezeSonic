@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<extension>
+  <name>PLUGIN_SQUEEZESONIC</name>
+  <module>Plugins::SqueezeSonic::Plugin</module>
+  <version>0.3</version>
+  <description>PLUGIN_SQUEEZESONIC_DESC</description>
+  <creator>foobarjo</creator>
+  <email>jo@foobarjo.org</email>
+  <defaultState>enabled</defaultState>
+  <icon>plugins/SqueezeSonic/html/images/subsonic.png</icon>
+  <optionsURL>plugins/SqueezeSonic/settings/basic.html</optionsURL>
+  <homepageURL>http://www.foobarjo.org/LMS/</homepageURL>
+  <type>2</type>
+  <!-- type=extension -->
+  <targetApplication>
+    <id>SqueezeCenter</id>
+    <minVersion>7.6</minVersion>
+    <maxVersion>*</maxVersion>
+  </targetApplication>
+</extension>

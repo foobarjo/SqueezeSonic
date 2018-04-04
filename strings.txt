@@ -1,0 +1,101 @@
+# String file for Subsonic plugin
+
+PLUGIN_SQUEEZESONIC
+	EN	SqueezeSonic
+	FR	SqueezeSonic
+
+PLUGIN_SQUEEZESONIC_DESC
+	EN	Listen music from a Subsonic API capable (>1.11.0) backend - "Fabino's edition"
+	FR	Se connecte à un serveur proposant l'API Subsonic (>1.11.0) - "Fabino's edition"
+	
+PLUGIN_SQUEEZESONIC_REQUIRES_CREDENTIALS
+	EN	Please enter your connexion informations in Server Settings/Advanced/SqueezeSonic
+	FR	Renseignez vos informations de connexion dans Paramètres/Avancé/SqueezeSonic
+	
+PLUGIN_SQUEEZESONIC_PREFS_USER
+	EN	Username
+	FR	Utilisateur
+	
+PLUGIN_SQUEEZESONIC_PREFS_PASSWORD
+	EN	Password
+	FR	Mot de passe
+
+PLUGIN_SQUEEZESONIC_PREFS_SUBURL
+	EN	Subsonic server's URL
+	FR	URL du serveur Subsonic
+
+PLUGIN_SQUEEZESONIC_PREFS_LISTS_SIZE
+	EN	Number of elements present in lists and returned by searches
+	FR	Nombre d'elements dans les listes et retournés par les recherches
+
+PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_LISTS
+	EN	Timeout for albums and songs lists in seconds
+	FR	Timeout des listes d'albums et de morceux en secondes
+
+PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_MUSIC
+	EN	Timeout for cached albums & songs in seconds
+	FR	Timeout du cache pour les albums et morceaux
+
+PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE
+	EN	Transcode format and quality
+	FR	Format et qualité du transcodage
+
+PLUGIN_SQUEEZESONIC_PREFS_ARTWORK_SIZE
+	EN	Artwork prefered size in pixels
+	FR	Taille des couvertures d'album & images en pixels
+	
+PLUGIN_SQUEEZESONIC_RANDOM
+	EN	Random albums
+	FR	Albums Aleatoires
+
+PLUGIN_SQUEEZESONIC_SEARCH
+	EN	Search '%s'
+	FR	Rechercher '%s'
+
+PLUGIN_SQUEEZESONIC_PLUS
+	EN	More on Subsonic
+	FR	Plus sur Subsonic
+
+PLUGIN_SQUEEZESONIC_BIOGRAPHY
+	EN	Biography
+	FR	Biographie
+
+PLUGIN_SQUEEZESONIC_SIMILAR_ARTISTS
+	EN	Similar Artists
+	FR	Artistes similaires
+
+PLUGIN_SQUEEZESONIC_RECENTLY_ADDED
+	EN	Recent Albums
+	FR	Albums récents
+
+PLUGIN_SQUEEZESONIC_GENRES
+	EN	Genres
+	FR	Genres
+
+PLUGIN_SQUEEZESONIC_INDEX
+	EN	Artists
+	FR	Artistes
+
+PLUGIN_SQUEEZESONIC_STARTRADIO
+	EN	Radio
+	FR	Radio
+
+PLUGIN_SQUEEZESONIC_MINIMUM_VERSION
+	EN	Sorry, minimum supported API version is 1.11.0 (Subsonic 5.1). Your current version is 
+	FR	Désolé, la version minimale supportée de l'API est 1.11.0 (Subsonic 5.1). Votre version est 
+
+PLUGIN_SQUEEZESONIC_SOMETHING_WRONG
+	EN	Something went wrong. Please verify your connexion informations in Server Settings/Advanced/SqueezeSonic
+	FR	Quelque chose se passe mal, veuillez verifier vos informations de connexion dans Paramètres/Avancé/SqueezeSonic
+
+PLUGIN_SQUEEZESONIC_PLAYLISTS
+	EN	Playlists
+	FR	Playlists
+
+PLUGIN_SQUEEZESONIC_PODCASTS
+	EN	Podcasts
+	FR	Podcasts
+
+PLUGIN_SQUEEZESONIC_REFRESH
+	EN	Rrefresh
+	FR	Rafraichir
