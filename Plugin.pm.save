@@ -50,6 +50,8 @@ sub initPlugin {
 		func => \&search,
 	) );
 	
+	Slim::Control::Request::addDispatch(['squeezesonic', 'free', '_list'], [0, 0, 0, \&free]);
+
 	$class->SUPER::initPlugin(
 		feed   => \&handleFeed,
 		tag    => 'squeezesonic',
@@ -112,9 +114,9 @@ sub handleFeed {
 						name  => cstring($client, 'PLUGIN_SQUEEZESONIC_PODCASTS'),
 						url  => \&podcastsList,
 						image => 'plugins/SqueezeSonic/html/images/podcasts.png',
-				},{		
+				},{
 						name  => cstring($client, 'PLUGIN_SQUEEZESONIC_REFRESH'),
-						url  => \&cleanup,
+						url  => \&refresh,
 						image => 'plugins/SqueezeSonic/html/images/refresh.png',
 				};
 			} elsif ($status eq 'ok' && version->parse($version) < version->parse('1.11.0')) {
@@ -254,11 +256,15 @@ sub search {
 sub podcastsList {
         my ($client, $cb, $params, $args) = @_;
 
+	Plugins::SqueezeSonic::API->cacheRemove('getPodcastsAll') if $args->{refresh} eq 'true';
+
 	my $query = "getPodcasts?includeEpisodes=false";
 	Plugins::SqueezeSonic::API->get(sub {
        		my $podcastList = shift;
 		my $podcasts = [];
 		
+		push @$podcasts, _formatRefresh(cstring($client, 'PLUGIN_SQUEEZESONIC_REFRESH'),'podcastsList', 'plugins/SqueezeSonic/html/images/podcasts.png', $args);
+	
 		foreach my $podcast ( @{$podcastList->{'subsonic-response'}->{podcasts}->{channel}} ) {
 			$podcast->{image} = _getImage($podcast->{coverArt});
 			push @$podcasts, _formatPodcast($podcast);
@@ -288,9 +294,13 @@ sub _formatPodcast {
 sub podcast {
 	my ($client, $cb, $params, $args) = @_;
 
+	Plugins::SqueezeSonic::API->cacheRemove('getPodcasts' . $args->{podcast_id}) if $args->{refresh} eq 'true';
+
         Plugins::SqueezeSonic::API->get(sub {
                         my $podcast = shift;
                         my $episodes = [];
+
+			push @$episodes, _formatRefresh(cstring($client, 'PLUGIN_SQUEEZESONIC_REFRESH'), 'podcast', _getImage($podcast->{'subsonic-response'}->{podcasts}->{channel}->[0]->{coverArt}), $args);
 
                 	foreach my $episode ( @{$podcast->{'subsonic-response'}->{podcasts}->{channel}->[0]->{episode}} ) {
         	                        push @$episodes, _formatTrack(_cacheTrack($episode)) if $episode->{status} eq 'completed';
@@ -305,9 +315,13 @@ sub podcast {
 sub playlistsList {
         my ($client, $cb, $params, $args) = @_;
 
+	Plugins::SqueezeSonic::API->cacheRemove('getPlaylistsAll') if $args->{refresh} eq 'true';
+
 	Plugins::SqueezeSonic::API->get(sub {
        		my $playlistsList = shift;
 		my $playlists = [];
+
+		push @$playlists, _formatRefresh(cstring($client, 'PLUGIN_SQUEEZESONIC_REFRESH'),'playlistsList', 'html/images/playlists.png', $args);
 
 		foreach my $playlist ( @{$playlistsList->{'subsonic-response'}->{playlists}->{playlist}} ) {
 			$playlist->{image} = _getImage($playlist->{coverArt});
@@ -368,6 +382,8 @@ sub albumList {
 	Plugins::SqueezeSonic::API->get(sub {
        		my $albumList = shift;
 		my $albums = [];
+
+                push @$albums, _formatRefresh(cstring($client, 'PLUGIN_SQUEEZESONIC_REFRESH'),'getAlbumList2' . $id, $img, $args);
 
 		foreach my $album ( @{$albumList->{'subsonic-response'}->{albumList2}->{album}} ) {
 			$album->{image} = _getImage($album->{coverArt});
@@ -667,7 +683,37 @@ sub _getImage {
 	return $art;
 }
 
-sub cleanup {
-	Plugins::SqueezeSonic::API->cacheClear;
+sub _formatRefresh {
+	my ($name, $list, $img, $args) = @_;
+$log->error("list: " . $list);
+	my $formated = {
+		name  => $name,
+                image => $img,
+                url => \&refresh,
+		passthrough => [{ 
+			list => $list,
+			args => $args 
+		}],
+	};
+	return $formated;
+}
+
+sub refresh {
+	my ($client, $cb, $params, $args) = @_;
+	my $lists=['almbumsList2random','albumList2new',
+
+$log->error("list: " . $args->{list}); 
+	Slim::Control::Request::executeRequest(undef, ['squeezesonic', 'free', $args->{list}]);
+}
+	
+sub free {
+	my $request = shift;
+
+$log->error("query: " . $request->getRequestString());
+$log->error("param p2: " . $request->getParam('_p2'));
+$log->error("param _list: " . $request->getParam('_list'));
+
+	Plugins::SqueezeSonic::API->cacheRemove($request->getParam('_list'));
+	$request->setStatusDone;
 }
 1;

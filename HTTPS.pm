@@ -1,5 +1,10 @@
 package Plugins::SqueezeSonic::HTTPS;
 use base qw(Plugins::SqueezeSonic::ProtocolHandler Slim::Player::Protocols::HTTPS);
+
+use Slim::Utils::Log;
+my $log   = logger('plugin.squeezesonic');
+
+
 sub new {
         my $class  = shift;
         my $args   = shift;
@@ -22,7 +27,6 @@ sub new {
 }
 
 sub canDirectStreamSong {
-        my ( $class, $client, $song ) = @_;
-        return $class->SUPER::canDirectStream( $client, $song->streamUrl());
+	return 0;
 }
 1;

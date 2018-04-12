@@ -72,6 +72,11 @@ sub cacheRemove {
 	$cache->remove($id);
 }
 
+sub cacheClear {
+	my ($class, $id) = @_;
+	$cache->clear();
+}
+
 sub get {
         my ($class, $cb, $command, $id, $timeout, $params) = @_;
 

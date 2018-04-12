@@ -67,7 +67,7 @@ sub parseDirectHeaders {
 sub getMetadataFor {
 	my ( $class, $client, $url ) = @_;
 
-	my ($id) = $url =~ m{^squeezesonics?://(.+?)$};
+	my ($id) = $url =~ m{^sonics?://(.+?)$};
 	Plugins::SqueezeSonic::API->get(sub {
 		my $track = shift;
 		my $bitrate;
@@ -100,9 +100,8 @@ sub getNextTrack {
 	my ($class, $song, $successCb, $errorCb) = @_;
 	
 	my $url = $song->currentTrack()->url;
-	my ($id) = $url =~ m{^squeezesonics?://(.+?)$};
-	my ($tid) = $url =~ m{^squeezesonics?://(.*)-};;
-
+	my ($id) = $url =~ m{^sonics?://(.+?)$};
+	my ($tid) = $url =~ m{^sonics?://(.*)-};;
 	Plugins::SqueezeSonic::API->get(sub {
 		my $track = shift;
 		my $br;

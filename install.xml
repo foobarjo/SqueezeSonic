@@ -2,7 +2,7 @@
 <extension>
   <name>PLUGIN_SQUEEZESONIC</name>
   <module>Plugins::SqueezeSonic::Plugin</module>
-  <version>0.3</version>
+  <version>0.6</version>
   <description>PLUGIN_SQUEEZESONIC_DESC</description>
   <creator>foobarjo</creator>
   <email>jo@foobarjo.org</email>

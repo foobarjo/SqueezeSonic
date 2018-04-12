@@ -97,5 +97,5 @@ PLUGIN_SQUEEZESONIC_PODCASTS
 	FR	Podcasts
 
 PLUGIN_SQUEEZESONIC_REFRESH
-	EN	Rrefresh
-	FR	Rafraichir
+	EN	Rrefresh lists
+	FR	Rafraichir les listes
