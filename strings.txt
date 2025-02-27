@@ -9,7 +9,7 @@ PLUGIN_SQUEEZESONIC_DESC
 	FR	Se connecte à un serveur proposant l'API Subsonic (>1.11.0) - "Fabino's edition"
 	
 PLUGIN_SQUEEZESONIC_REQUIRES_CREDENTIALS
-	EN	Please enter your connexion informations in Server Settings/Advanced/SqueezeSonic
+	EN	Please enter your connection information in Server Settings/Advanced/SqueezeSonic
 	FR	Renseignez vos informations de connexion dans Paramètres/Avancé/SqueezeSonic
 	
 PLUGIN_SQUEEZESONIC_PREFS_USER
@@ -85,7 +85,7 @@ PLUGIN_SQUEEZESONIC_MINIMUM_VERSION
 	FR	Désolé, la version minimale supportée de l'API est 1.11.0 (Subsonic 5.1). Votre version est 
 
 PLUGIN_SQUEEZESONIC_SOMETHING_WRONG
-	EN	Something went wrong. Please verify your connexion informations in Server Settings/Advanced/SqueezeSonic
+	EN	Something went wrong. Please verify your connection information in Server Settings/Advanced/SqueezeSonic
 	FR	Quelque chose se passe mal, veuillez verifier vos informations de connexion dans Paramètres/Avancé/SqueezeSonic
 
 PLUGIN_SQUEEZESONIC_PLAYLISTS
@@ -97,5 +97,5 @@ PLUGIN_SQUEEZESONIC_PODCASTS
 	FR	Podcasts
 
 PLUGIN_SQUEEZESONIC_REFRESH
-	EN	Rrefresh lists
+	EN	Refresh lists
 	FR	Rafraichir les listes
