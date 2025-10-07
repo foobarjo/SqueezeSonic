@@ -427,26 +427,33 @@ sub _formatTrack {
 
 sub _cacheTrack {
 	my ($track) = @_;
-	                
-        $track->{image} = _getImage($track->{coverArt});
-	
-	my $tid;
-	if ($prefs->get('transcode') ne 'raw' && $track->{transcodedSuffix}) {
-			$tid = $track->{id} . "-" . $prefs->get('transcode') . "." . $track->{transcodedSuffix};
-			$track->{bitrate} = $prefs->get('transcode');
 
-        }else{
-                        my $format = $track->{suffix};
-                        if ($format =~ /^flac$/) {
-                                $format =~ s/flac/flc/;
-                        }
-			$tid = $track->{id} . "-" . "raw" . "." . $format;
-        }
+	$track->{image} = _getImage($track->{coverArt});
+
+	my $format = $track->{suffix};
+	if ($prefs->get('transcodeFormat') eq 'auto') {
+		if ($track->{transcodedSuffix}) {
+			$format = $track->{transcodedSuffix};
+		} else {
+			$log->is_error && $log->error( 'PLUGIN_SQUEEZESONIC_TRANSCODE_AUTO_NOT_DETERMINED' );
+		}
+	} elsif ($prefs->get('transcodeFormat') ne 'raw') {
+		$format = $prefs->get('transcodeFormat');
+	}
+	if ($format =~ /^flac$/) {
+		$format =~ s/flac/flc/;
+	}
+	my $bitrate = "raw";
+	if ($prefs->get('transcodeBitrate') ne 'raw') {
+		$bitrate = "$prefs->get('transcodeBitrate')";
+		$track->{bitrate} = $prefs->get('transcode');
+	}
+	my $tid = $track->{id} . "-" . $bitrate . "." . $format;
 
 	if ($prefs->get('suburl') =~ m/^https/){
-	        $track->{play}='sonics://' . $tid;
+		$track->{play}='sonics://' . $tid;
 	} else {
-	        $track->{play}='sonic://' . $tid;
+		$track->{play}='sonic://' . $tid;
 	}
 	Plugins::SqueezeSonic::API->cacheSet("getSong" . $tid,$track,$prefs->get('tmusic'));
 	return $track;

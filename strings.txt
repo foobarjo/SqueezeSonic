@@ -36,9 +36,13 @@ PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_MUSIC
 	EN	Timeout for cached albums & songs in seconds
 	FR	Timeout du cache pour les albums et morceaux
 
-PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE
-	EN	Transcode format and quality
-	FR	Format et qualité du transcodage
+PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE_BITRATE
+	EN	Transcode max bitrate
+	FR	Bitrate maximum du transcodage
+
+PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE_FORMAT
+	EN	Transcode format
+	FR	Format du transcodage
 
 PLUGIN_SQUEEZESONIC_PREFS_ARTWORK_SIZE
 	EN	Artwork prefered size in pixels
@@ -99,3 +103,7 @@ PLUGIN_SQUEEZESONIC_PODCASTS
 PLUGIN_SQUEEZESONIC_REFRESH
 	EN	Refresh lists
 	FR	Rafraichir les listes
+
+PLUGIN_SQUEEZESONIC_TRANSCODE_AUTO_NOT_DETERMINED
+	EN	Cannot determine Auto transcoding format because Subsonic server does not send transcodedSuffix. Fallback to raw format.
+	FR	Impossible de déterminer le format de transcodage Auto car le serveur Subsonic n'envoie pas transcodedSuffix. Pas de transcodage utilisé.

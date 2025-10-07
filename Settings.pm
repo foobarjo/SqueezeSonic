@@ -56,8 +56,11 @@ sub handler {
 		if ($params->{'tmusic'}) {
 			$prefs->set('tmusic', $params->{'tmusic'});
 		}
-		if ($params->{'transcode'}) {
-			$prefs->set('transcode', $params->{'transcode'});
+		if ($params->{'transcodeBitrate'}) {
+			$prefs->set('transcodeBitrate', $params->{'transcodeBitrate'});
+		}
+		if ($params->{'transcodeFormat'}) {
+			$prefs->set('transcodeFormat', $params->{'transcodeFormat'});
 		}
 		if ($params->{'asize'}) {
 			$prefs->set('asize', $params->{'asize'});
@@ -70,7 +73,8 @@ sub handler {
 	$params->{'prefs'}->{'slists'} = $prefs->get('slists') || '200';
 	$params->{'prefs'}->{'tlists'} = $prefs->get('tlists') || '600';
 	$params->{'prefs'}->{'tmusic'} = $prefs->get('tmusic') || '3600';
-	$params->{'prefs'}->{'transcode'} = $prefs->get('transcode') || 'raw';
+	$params->{'prefs'}->{'transcodeBitrate'} = $prefs->get('transcodeBitrate') || 'raw';
+	$params->{'prefs'}->{'transcodeFormat'} = $prefs->get('transcodeFormat') || 'raw';
 	$params->{'prefs'}->{'asize'} = $prefs->get('asize') || '800';
 
 	return $class->SUPER::handler($client, $params);

@@ -6,14 +6,23 @@
 		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_LISTS_SIZE" desc="Number of elements present in lists and returned by searches" %]<input type="text" class="stdedit" name="slists" id="slists" value="[% prefs.slists %]" size="5" />[% END %]
 		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_LISTS" desc="Timeout of genrated list in seconds" %]<input type="text" class="stdedit" name="tlists" id="tlists" value="[% prefs.tlists %]" size="5" />[% END %]
 		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_MUSIC" desc="Timeout for cached albums & songs in seconds" %]<input type="text" class="stdedit" name="tmusic" id="tmusic" value="[% prefs.tmusic %]" size="5" />[% END %]
-		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE" desc="Some delay may be needed after changing format to replay previously played songs" %]
-			<select name="transcode" id="transcode">
-                        	<option [% prefs.transcode == "raw" ? "selected" : "" %] value="raw" >Disabled (raw)</option>
-                        	<option [% prefs.transcode == "320" ? "selected" : "" %] value="320" >MP3 320 kbps</option>
-                        	<option [% prefs.transcode == "256" ? "selected" : "" %] value="256" >MP3 256 kbps</option>
-                        	<option [% prefs.transcode == "128" ? "selected" : "" %] value="128" >MP3 128 kbps</option>
-                        	<option [% prefs.transcode == "64" ? "selected" : "" %] value="64" >MP3 64 kbps</option>
-                        </select>
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE_BITRATE" desc="Some delay may be needed after changing bitrate to replay previously played songs" %]
+				<select name="transcodeBitrate" id="transcodeBitrate">
+						<option [% prefs.transcodeBitrate == "raw" ? "selected" : "" %] value="raw" >Disabled (raw)</option>
+						<option [% prefs.transcodeBitrate == "320" ? "selected" : "" %] value="320" >320 kbps</option>
+						<option [% prefs.transcodeBitrate == "256" ? "selected" : "" %] value="256" >256 kbps</option>
+						<option [% prefs.transcodeBitrate == "128" ? "selected" : "" %] value="128" >128 kbps</option>
+						<option [% prefs.transcodeBitrate == "64" ? "selected" : "" %] value="64" >64 kbps</option>
+				</select>
+		[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_TRANSCODE_FORMAT" desc="Not all subsonic servers allow Automatic transcoding format definition. Some delay may be needed after changing format to replay previously played songs" %]
+				<select name="transcodeFormat" id="transcodeFormat">
+						<option [% prefs.transcodeFormat == "raw" ? "selected" : "" %] value="raw" >Disabled (raw)</option>
+						<option [% prefs.transcodeFormat == "auto" ? "selected" : "" %] value="auto" >Auto</option>
+						<option [% prefs.transcodeFormat == "mp3" ? "selected" : "" %] value="mp3" >MP3</option>
+						<option [% prefs.transcodeFormat == "ogg" ? "selected" : "" %] value="ogg" >OGG</option>
+						<option [% prefs.transcodeFormat == "flac" ? "selected" : "" %] value="flac" >FLAC</option>
+				</select>
 		[% END %]
 		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_ARTWORK_SIZE" desc="Artwork prefered size in pixels" %]
 			<select name="asize" id="asize">
