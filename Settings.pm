@@ -30,22 +30,22 @@ sub prefs {
 
 sub handler {
 	my ($class, $client, $params) = @_;
-	
+
 	if ($params->{'saveSettings'} && $params->{'username'} && $params->{'suburl'}) {
 		if ($params->{'username'}) {
 			$prefs->set('username', $params->{'username'});
 		}
-	
+
 		if ($params->{'password'} && ($params->{'password'} ne "**********")) {
 			$prefs->set('password', $params->{'password'});
 		}
-		
+
 		if ($params->{'suburl'}) {
 			if ($params->{'suburl'} =~ m/^https?/) {
 				$prefs->set('suburl', $params->{'suburl'});
 			} else {
 				$prefs->set('suburl', "http://" . $params->{'suburl'});
-			}			
+			}
 		}
 		if ($params->{'slists'}) {
 			$prefs->set('slists', $params->{'slists'});
@@ -62,7 +62,10 @@ sub handler {
 		if ($params->{'asize'}) {
 			$prefs->set('asize', $params->{'asize'});
 		}
-	}	
+ 		if ($params->{'auth'}) {
+			$prefs->set('auth', $params->{'auth'});
+		}
+	}
 
 	$params->{'prefs'}->{'username'} = $prefs->get('username');
 	$params->{'prefs'}->{'password'} = "**********";
@@ -72,6 +75,7 @@ sub handler {
 	$params->{'prefs'}->{'tmusic'} = $prefs->get('tmusic') || '3600';
 	$params->{'prefs'}->{'transcode'} = $prefs->get('transcode') || 'raw';
 	$params->{'prefs'}->{'asize'} = $prefs->get('asize') || '800';
+	$params->{'prefs'}->{'auth'} = $prefs->get('auth') || 'token';
 
 	return $class->SUPER::handler($client, $params);
 }
