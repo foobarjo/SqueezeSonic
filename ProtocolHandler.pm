@@ -109,19 +109,24 @@ sub getNextTrack {
 
 		my $auth=Plugins::SqueezeSonic::API->getAuth();
 
-		my ($format) = my ($format) = $url =~ m{\.(.+?)$};
+		my ($format) = $url =~ m{\.(.+?)$};
 		my ($bitrate) = ($url =~ m{-(.*)\.});
 
 		$tid = $track->{streamId} if $track->{type} eq 'podcast';
-		
-		if ($bitrate eq "raw") {
-			$stream = $prefs->get('suburl') . "/rest/stream?id=" . $tid . "&format=raw&" . $auth;
-			$br = $track->{bitRate}*1000;
-                } else {
-			$stream = $prefs->get('suburl') . "/rest/stream?id=" . $tid . "&format=" . $format . "&estimateContentLength=true&maxBitRate=" . $bitrate . "&" . $auth;			
-			$br = $bitrate*1000;
+
+		if ($format eq $track->{suffix}) {
+			$format = "raw";
 		}
-                $song->pluginData($format);
+		my $transcode = "format=" . $format;
+		if ($bitrate ne "raw") {
+			$transcode = $transcode . "&estimateContentLength=true&maxBitRate=" . $bitrate;
+			$br = $bitrate*1000;
+		} else {
+			$br = $track->{bitRate}*1000;
+		}
+		$stream = $prefs->get('suburl') . "/rest/stream?id=" . $tid . "&" . $transcode . "&" . $auth;
+
+		$song->pluginData($format);
 		$song->streamUrl($stream);
 		$song->duration($track->{duration});
 		$song->bitrate($br);
