@@ -33,5 +33,11 @@
                         	<option [% prefs.asize == "150" ? "selected" : "" %] value="150" >150</option>
                         </select>
 		[% END %]
+		[% WRAPPER settingGroup title="PLUGIN_SQUEEZESONIC_PREFS_AUTH_TYPE" desc="Preferred auth type, token hides the password but it is not implemented by all subsonic servers." %]
+			<select name="auth" id="auth">
+                        	<option [% prefs.auth == "token" ? "selected" : "" %] value="token" >token</option>
+                        	<option [% prefs.auth == "password" ? "selected" : "" %] value="password" >password</option>
+                        </select>
+		[% END %]
 	[% END %]
 [% PROCESS settings/footer.html %]
