@@ -14,12 +14,17 @@ my $prefs = preferences('plugin.squeezesonic');
 my $log = logger('plugin.squeezesonic');
 
 sub getAuth {
+	my $auth;
 	my $user = $prefs->get('username');
 	my $pass = $prefs->get('password');
+	if ( $prefs->get('auth') eq "password" ) {
+		$auth = "u=$user&p=$pass&v=1.11.0&f=json&c=SqueezeSonic";
+		return $auth;
+	}
 	my @chars = ('A'..'Z', 'a'..'z', 0..9);
 	my $salt = join '', map $chars[rand @chars], 0..8;
         my $token = md5_hex($pass . $salt);
-	my $auth = "u=$user&t=$token&s=$salt&v=1.11.0&f=json&c=SqueezeSonic";
+	$auth = "u=$user&t=$token&s=$salt&v=1.11.0&f=json&c=SqueezeSonic";
 	return $auth;
 }
 
