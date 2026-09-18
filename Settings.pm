@@ -50,6 +50,7 @@ sub handler {
 		if ($params->{'slists'}) {
 			$prefs->set('slists', $params->{'slists'});
 		}
+		$prefs->set('showmore', ($params->{'showmore'} ? '1' : ''));
 		if ($params->{'tlists'}) {
 			$prefs->set('tlists', $params->{'tlists'});
 		}
@@ -74,6 +75,7 @@ sub handler {
 	$params->{'prefs'}->{'password'} = "**********";
 	$params->{'prefs'}->{'suburl'} = $prefs->get('suburl');
 	$params->{'prefs'}->{'slists'} = $prefs->get('slists') || '200';
+	$params->{'prefs'}->{'showmore'} = $prefs->get('showmore') || '';
 	$params->{'prefs'}->{'tlists'} = $prefs->get('tlists') || '600';
 	$params->{'prefs'}->{'tmusic'} = $prefs->get('tmusic') || '3600';
 	$params->{'prefs'}->{'transcodeBitrate'} = $prefs->get('transcodeBitrate') || 'raw';

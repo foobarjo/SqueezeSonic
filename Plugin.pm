@@ -382,10 +382,18 @@ sub albumList {
 sub _formatAlbum {
 	my ($album) = @_;
 
+	my $line1 = $album->{name};
+	my $line2 = '';
+	if ( $prefs->get('showmore') ) {
+		$line1 = $album->{year} . ($album->{year} && $album->{name} ? ' - ' : '') . $album->{name};
+		$line2 = $album->{artist};
+	}
+
 	my $formated = {
 			name  => $album->{artist} . ($album->{artist} && $album->{name} ? ' - ' : '') . $album->{name},
 			image => $album->{image},
-			line1 => $album->{name},
+			line1 => $line1,
+			line2 => $line2,
 			type  => 'playlist',
 			url   => \&album,
 			passthrough => [{
@@ -415,7 +423,7 @@ sub _formatTrack {
 
 	my $formated = {
         	        name  => $track->{title} . ($track->{artist} ? " - $track->{artist}" : ''),
-                	line1 => $track->{title},
+                	line1 => (($prefs->get('showmore') && $track->{track}) ? $track->{track} . '. ' : '') . $track->{title},
                 	line2 => $track->{artist} . ($track->{artist} && $track->{album} ? ' - ' : '') . $track->{album},
                 	image => $track->{image},
                 	play  => $track->{play},

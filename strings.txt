@@ -28,6 +28,14 @@ PLUGIN_SQUEEZESONIC_PREFS_LISTS_SIZE
 	EN	Number of elements present in lists and returned by searches
 	FR	Nombre d'elements dans les listes et retournés par les recherches
 
+PLUGIN_SQUEEZESONIC_PREFS_SHOW_MORE_TITLE
+	EN	Extra track information
+	FR	Information supplémentaire des pistes
+
+PLUGIN_SQUEEZESONIC_PREFS_SHOW_MORE_DESC
+	EN	Show album year and track number
+	FR	Affiche l'année de l'album et le numéro de piste
+
 PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_LISTS
 	EN	Timeout for albums and songs lists in seconds
 	FR	Timeout des listes d'albums et de morceux en secondes
