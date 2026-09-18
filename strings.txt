@@ -30,7 +30,7 @@ PLUGIN_SQUEEZESONIC_PREFS_LISTS_SIZE
 
 PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_LISTS
 	EN	Timeout for albums and songs lists in seconds
-	FR	Timeout des listes d'albums et de morceux en secondes
+	FR	Timeout des listes d'albums et de morceaux en secondes
 
 PLUGIN_SQUEEZESONIC_PREFS_TIMEOUT_MUSIC
 	EN	Timeout for cached albums & songs in seconds
@@ -107,3 +107,7 @@ PLUGIN_SQUEEZESONIC_REFRESH
 PLUGIN_SQUEEZESONIC_PREFS_AUTH_TYPE
 	EN	Authentication Type
 	FR	Type d'authentification
+
+PLUGIN_SQUEEZESONIC_TRANSCODE_AUTO_NOT_DETERMINED
+	EN	Cannot determine Auto transcoding format because Subsonic server does not send transcodedSuffix. Fallback to raw format.
+	FR	Impossible de déterminer le format de transcodage Auto car le serveur Subsonic n'envoie pas transcodedSuffix. Pas de transcodage utilisé.
