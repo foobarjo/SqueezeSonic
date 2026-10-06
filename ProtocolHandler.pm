@@ -55,7 +55,7 @@ sub parseDirectHeaders {
                         $duration = $1;
                 }
 	}
-	my $bitrate = int($length/$duration*8) if $duration > 0;
+	my $bitrate = ($duration && $length) ? int($length/$duration*8) : undef;
 
 	if ($client) {
 		$client->currentPlaylistUpdateTime( Time::HiRes::time() );
@@ -114,10 +114,13 @@ sub getNextTrack {
 
 		$tid = $track->{streamId} if $track->{type} eq 'podcast';
 
-		if ($format eq $track->{suffix}) {
-			$format = "raw";
+		my $subsonic_format = $format;
+		$subsonic_format =~ s/^flc$/flac/;
+
+		if ($subsonic_format eq $track->{suffix}) {
+			$subsonic_format = "raw";
 		}
-		my $transcode = "format=" . $format;
+		my $transcode = "format=" . $subsonic_format;
 		if ($bitrate ne "raw") {
 			$transcode = $transcode . "&estimateContentLength=true&maxBitRate=" . $bitrate;
 			$br = $bitrate*1000;
